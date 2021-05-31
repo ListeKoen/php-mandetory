@@ -10,7 +10,6 @@ if ($messageId === 'added') $message = 'The product has been updated in your car
 $productsInCart = [];
 
 if (isset($_SESSION['cart'])) {
-
     function formatPrice(int $cents): string
     {
         return number_format(($cents / 100), 2, ',', '.') . " kr";
@@ -49,7 +48,6 @@ if (isset($_SESSION['cart'])) {
 }
 
 //Update quantity of product in shopping cart
-
 if ($_POST) {
 
     if ($_POST['quantity'] !== '0') {

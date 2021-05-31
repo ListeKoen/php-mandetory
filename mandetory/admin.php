@@ -20,7 +20,6 @@ $editProduct = false;
 if ($editId) $editProduct = true;
 
 //Adding product(s)
-
 $priceKr = $_POST["price-kr"] ?? '';
 $priceOre = $_POST["price-ore"] ?? '';
 
@@ -40,8 +39,6 @@ if (!$editProduct && !$deleteId && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 //Deleting product(s)
-
-
 if ($deleteId && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $q = "DELETE FROM products WHERE id = {$deleteId}";
@@ -82,7 +79,6 @@ function formatPrice(int $cents): string
 }
 
 //Editing product
-
 $editingProduct = null;
 
 if ($editProduct) {

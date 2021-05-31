@@ -46,7 +46,6 @@ while ($product = mysqli_fetch_array($response)) {
 
 
 //Add product(s) to the shopping cart
-
 if ($_POST) {
     $adding_product['id'] = $_POST['product_id'];
     $adding_product['quantity'] = $_POST['quantity'];
