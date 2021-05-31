@@ -5,7 +5,6 @@ session_start();
 $authenticated = false;
 if (array_key_exists('user', $_SESSION) && $_SESSION['user']['admin']) $authenticated = true;
 
-// Connect to the database:
 $dbc = mysqli_connect('localhost', 'root', 'root', 'phpmandetory');
 
 $editId = ($_GET['editId']) ?? null;
@@ -20,7 +19,7 @@ if ($deleteId) $message = 'The product has been deleted!';
 $editProduct = false;
 if ($editId) $editProduct = true;
 
-// ----- Adding product -----
+//Adding product(s)
 
 $priceKr = $_POST["price-kr"] ?? '';
 $priceOre = $_POST["price-ore"] ?? '';
@@ -32,7 +31,7 @@ $subCategory = $_POST['subCategory'] ?? '';
 
 if (!$editProduct && !$deleteId && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // Add the task to the database.
+    //Add the task to the database.
     $q = "INSERT INTO products (id, name, price, category, subCategory) VALUES (null, '$name', '$price', '$category', '$subCategory')";
     $r = mysqli_query($dbc, $q);
 
@@ -40,7 +39,7 @@ if (!$editProduct && !$deleteId && $_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-// ----- Deleting product -----
+//Deleting product(s)
 
 
 if ($deleteId && $_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -54,7 +53,7 @@ if ($deleteId && $_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-// ----- Viewing products -----
+//Seeing products
 $query = 'SELECT id, name, price, category, subCategory FROM products';
 $response = mysqli_query($dbc, $query);
 
@@ -82,7 +81,7 @@ function formatPrice(int $cents): string
     return number_format(($cents / 100), 2, ',', '.') . " kr";
 }
 
-// ----- Editing product -----
+//Editing product
 
 $editingProduct = null;
 
@@ -117,31 +116,24 @@ if ($editProduct && $_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <main>
         <h1>Admin area</h1>
-
         <a class="return-button" href="index.php">&larr; Return to front page</a>
-
         <?php if ($message): ?>
             <div class="message">
                 <?php echo $message ?>
             </div>
         <?php endif; ?>
-
         <?php if ($authenticated): ?>
-
         <?php if (!$editProduct): ?>
             <h2>Add new product</h2>
         <?php endif; ?>
-
         <?php if ($editProduct): ?>
             <h2>Edit product</h2>
         <?php endif; ?>
-
         <form action="admin.php<?php if ($editingProduct) echo "?editId=" . $editingProduct['id'] ?>" method="POST">
             <div class="input-container">
                 <label for="name">Name<span class="required-star">*</span></label>
                 <input type="text" name="name" id="name" required value="<?php echo $editingProduct['name'] ?? '' ?>"/>
             </div>
-
             <div class="split-input">
                 <div class="input-container">
                     <label for="price-kr">Price<span class="required-star">*</span></label>
@@ -150,7 +142,6 @@ if ($editProduct && $_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p>kr</p>
                     </div>
                 </div>
-
                 <div class="input-container">
                     <label for="price-ore" style="color: transparent;">Price</label>
                     <div class="split-input">
@@ -159,31 +150,23 @@ if ($editProduct && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
             </div>
-
             <div class="input-container">
                 <label for="category">Category<span class="required-star">*</span></label>
                 <input type="text" name="category" id="category" required value="<?php echo $editingProduct['category'] ?? '' ?>"/>
             </div>
-
             <div class="input-container">
                 <label for="subcategory">Subcategory</label>
                 <input type="text" name="subCategory" id="subCategory" value="<?php echo $editingProduct['subCategory'] ?? '' ?>"/>
             </div>
-
             <?php if (!$editProduct): ?>
                 <button type="submit">Add product</button>
             <?php endif; ?>
-
             <?php if ($editProduct): ?>
                 <button type="submit">Save product</button>
             <?php endif; ?>
-
         </form>
 
-        <!--  Edit products  -->
-
         <h2>Products list</h2>
-
         <table class="products-administration">
             <tr>
                 <th>Product</th>
@@ -204,14 +187,10 @@ if ($editProduct && $_SERVER['REQUEST_METHOD'] == 'POST') {
                 </tr>
             <?php endforeach; ?>
         </table>
-
         <div class="total-products">Total number of products: <?php echo count($products) ?></div>
-
         <?php endif ?>
-
         <?php if (!$authenticated): ?>
             <p class="warning">Restricted Area: requires authentication</p>
-
             <?php if (!isset($_SESSION['user'])): ?>
                 <a class="return-button" href="login.php">Go to login</a>
             <?php endif ?>

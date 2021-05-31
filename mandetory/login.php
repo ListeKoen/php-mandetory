@@ -4,7 +4,6 @@ session_start();
 
 if ($_POST) {
 
-//    Database
     $dbc = mysqli_connect('localhost', 'root', 'root', 'phpmandetory');
 
     $query = 'SELECT id, name, email, phone, address, password, admin FROM users';
@@ -51,9 +50,7 @@ if ($_POST) {
 <body>
     <main>
         <h1>Log in</h1>
-
         <a class="return-button" href="index.php">&larr; Return to front page</a>
-
         <form id="login" action="login.php" method="POST" style="padding-top: 16px;">
             <div class="input-container">
                 <label for="email">Email</label>
@@ -63,11 +60,9 @@ if ($_POST) {
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password"/>
             </div>
-
             <button type="submit">Log in</button>
             <a href="signup.php">Do you need an account? Sign up</a>
         </form>
-
         <div class="information">
             <p>User login: notadmin@mail.com | 123</p>
             <p>Admin: admin@mail.com | 123</p>

@@ -16,7 +16,6 @@ if (isset($_SESSION['cart'])) {
         return number_format(($cents / 100), 2, ',', '.') . " kr";
     }
 
-// Connect to the database:
     $dbc = mysqli_connect('localhost', 'root', 'root', 'phpmandetory');
 
     $query = 'SELECT id, name, price, category, subCategory FROM products';
@@ -49,7 +48,7 @@ if (isset($_SESSION['cart'])) {
     }
 }
 
-// ----- Update product in cart -----
+//Update quantity of product in shopping cart
 
 if ($_POST) {
 
@@ -59,7 +58,6 @@ if ($_POST) {
         $adding_product['quantity'] = $_POST['quantity'];
 
         $_SESSION['cart'][$adding_product['id']] = $adding_product;
-
     }
 
     if ($_POST['quantity'] === '0') {
@@ -68,7 +66,6 @@ if ($_POST) {
 
     header("Location: cart.php?message=added");
 };
-
 ?>
 
 <!doctype html>
@@ -102,26 +99,20 @@ if ($_POST) {
             <div class="products">
                 <?php foreach ($productsInCart as $product_index => $product): ?>
                     <div class="product">
-                        <h3>
-                            <?php echo $product['name'] ?>
-                        </h3>
+                        <h3><?php echo $product['name'] ?></h3>
 
                         <img src="./images/<?php echo $product['image'] ?>.jpg">
 
                         <div class="cart-details">
                             <div class="cart-detail">
-                                Unit price:
-                                <?php echo formatPrice($product['price']) ?>
+                                Unit price:<?php echo formatPrice($product['price']) ?>
                             </div>
 
                             <form action="cart.php?>" method="POST">
-
                                 <input type="hidden" value="<?php echo $product['id'] ?>" name="product_id" id="product_id">
-
                                 <label for="quantity">Quantity</label>
                                 <div class="split-input">
                                     <input type="number" style="margin-right: 8px;" name="quantity" id="quantity" value="<?php echo $product['quantity'] ?>">
-
                                     <button type="submit">Update quantity</button>
                                 </div>
                             </form>
