@@ -1,0 +1,146 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url('./montserrat-extralight-webfont.woff2') format('woff2'),
+         url('./montserrat-extralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html {
+    font-family: 'montserrat';
+    background-color: #6030cf;
+}
+
+main {
+    width: 700px;
+    margin: 32px auto;
+    background-color: #c9bec5;
+    padding: 32px;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    color: #260a66;
+    text-decoration: none;
+}
+
+label {
+    display: block;
+}
+
+input {
+    display: block;
+    width: 50%;
+}
+
+.input-container {
+    margin-bottom: 16px;
+}
+
+.validation-error {
+    color: red;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+td, th {
+    padding: 8px 16px 16px 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+.split-input {
+    display: flex;
+}
+
+.cart-detail {
+    padding: 16px 0 8px 0;
+}
+
+.cart-product-total {
+    font-size: 20px;
+    text-align: right;
+}
+
+.message {
+    color: green;
+    font-size: 20px;
+    padding: 32px 0;
+}
+
+.warning {
+    color: red;
+}
+
+.products-navigation h3 {
+    background-color: darkgrey;
+    margin: 16px 0 0 0;
+    padding: 16px;
+    border-bottom: 1px solid grey;
+}
+
+.products-navigation h4 {
+    background-color: lightgrey;
+    margin: 0;
+    padding: 16px 32px;
+    border-bottom: 1px solid grey;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+}
+
+.product {
+    border: 1px solid lightgrey;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price {
+    padding: 16px 0 8px 0;
+    font-weight: bold;
+}
+
+.information {
+    font-style: italic;
+    color: dimgrey;
+}
+
+.split-input p {
+    margin: 0 0 0 8px;
+}
+
+.required-star {
+    color: red;
+}
+
+.total-products {
+    padding: 16px 8px;
+}
+
+.split {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-total {
+    text-align: right;
+    padding: 32px 0;
+    font-size: 24px;
+}
